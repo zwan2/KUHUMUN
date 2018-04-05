@@ -8,7 +8,7 @@ include 'top.php';
 	<p class="lead">음식점 정보 입력하기</p>
 	<br/>
 	
-	<form method="post" action="submit.php" onsubmit="return enter_check();" name="info">
+	<form method="post" action="complete.php" onsubmit="return enter_check();" name="info">
 		<table id="res_table" class="table">
 			<tbody>
 				<tr>
@@ -22,8 +22,8 @@ include 'top.php';
 				</tr>
 				<br/><br/>
 				<tr>
-					<td> <input type="text" class="form-control" placeholder="메뉴" name="menu">  </td>
-					<td> <input type="number" class="form-control" placeholder="가격" name="price">  </td>
+					<td> <input type="text" class="form-control" placeholder="메뉴" name="menu[]" size="15">  </td>
+					<td> <input type="number" class="form-control" placeholder="가격" name="price[]" min=1000 max="100000">  </td>
 					<td>　</td>
 				</tr>
 			</tbody>

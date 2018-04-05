@@ -4,7 +4,7 @@ include 'top.php';
 
 
 <div class="container">
-	<blockquote class="blockquote text-center"><h1 class="display-3">건대후문</h1></blockquote>
+	<blockquote class="blockquote text-center"><h1 class="display-4">건대후문</h1></blockquote>
 	<blockquote class="blockquote text-center">
 		<p class="lead">'건대후문'은 건대 후문 음식점들의 인터넷 등록 미비, 가격 인상 등으로 정보를 알기 힘든 문제를 해결하기 위한 프로젝트입니다. 학생 여러분들이 직접 메뉴판을 만들어주세요.</p>
 	</blockquote>

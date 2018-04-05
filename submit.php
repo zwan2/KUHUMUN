@@ -5,10 +5,16 @@ $title = $_POST['title'];
 $menu = $_POST['menu']; 
 $price = $_POST['price'];
 
-echo $title;
-echo $menu;
-echo $price;
-//덮어씌워짐 문제 (3344가 덮음)
+$menu = implode(',', $menu);
+$price = implode(',', $price);
+
+
+for($i=0;$i<count($menu);$i++)
+  {
+    echo $addText[$i]."<br>\n";
+    $query = "INSERT INTO RES_DETAIL () "
+  }
+
 ?>
 
 <div class="container">
