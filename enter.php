@@ -8,12 +8,12 @@ include 'top.php';
 	<p class="lead">음식점 정보 입력하기</p>
 	<br/>
 	
-	<form method="post" action="complete.php" onsubmit="return enter_check();" name="info">
+	<form method="post" action="submit.php" onsubmit="return enter_check();" name="info">
 		<table id="res_table" class="table">
 			<tbody>
 				<tr>
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="음식점명" aria-label="음식점명" aria-describedby="basic-addon1" name="title" id="title">
+					  <input type="text" class="form-control" placeholder="음식점명" aria-label="음식점명" aria-describedby="basic-addon1" name="title" id="title" size="20">
 					</div>
 				</tr>
 				<br/>
@@ -45,24 +45,29 @@ include 'top.php';
 <script type="text/javascript">
 function enter_check(){
 	var form = document.info;
-	
-
+	form.title.value.replace(/ /gi, "");
 	//전부 입력했는지 검사
 	if(form.title.value=="") {
 		alert("음식점명을 입력하세요");
 		return false;
+	} 
 
-	} /*else if(form.menu.value=="" || form.price.value=="") {
+
+
+	if(form.menu.value=="" || form.price.value=="") {
 		alert("음식점 정보를 모두 입력하세요");
 		return false;
-	}*/
+	}
 
 	
 	$("#title").bind("keyup",function(){
 	 re = /[~!@\#$%^&*\()\-=+_']/gi; 
 	 var temp=$("#title").val();
 	 if(re.test(temp)){ //특수문자가 포함되면 삭제하여 값으로 다시셋팅
-	 $("#title").val(temp.replace(re,"")); } });
+	 $("#title").val(temp.replace(re,"")); 
+	} 
+
+	});
 
 
 	
