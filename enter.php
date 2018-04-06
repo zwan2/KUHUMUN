@@ -18,7 +18,7 @@ include 'top.php';
 				</tr>
 				<br/>
 				<tr>
-					<button type="button" class="btn btn-outline-primary" onClick="insRow()">추가</button>
+					<button type="button" class="btn btn-outline-dark" onClick="insRow()">추가</button>
 				</tr>
 				<br/><br/>
 				<tr>

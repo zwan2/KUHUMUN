@@ -36,11 +36,17 @@ function list_view() {
 		$search = preg_replace("/\s+/", "", $_GET['search']);
 		$search = "%".$search."%";
 	
-		$query_res_select = "SELECT RES_ID, RES_TITLE FROM RESTAURANT WHERE RES_TITLE LIKE '$search'";
+		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_TITLE LIKE '$search' ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, RES_TITLE ASC";
 
 		if($result = $db->query($query_res_select)) {
 			if($row = $result->fetch_assoc()) {
-				echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'>$row[RES_TITLE]</a></li>";
+				
+				if($row['PROVEN_CODE'] == 0) {
+					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'>$row[RES_TITLE]</a></li>";
+ 				} else if ($row['PROVEN_CODE'] == 1) {
+ 					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'><p>$row[RES_TITLE]</p></a></li>";
+ 				}
+
 			} 
 			//잘못된 주소
 			else {
@@ -50,10 +56,14 @@ function list_view() {
 	} 
 	//DEFAULT
 	else {
-		$query_res_select = "SELECT RES_ID, RES_TITLE FROM RESTAURANT ORDER BY RES_TITLE ASC";
+		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, RES_TITLE ASC";
 		if($result = $db->query($query_res_select)) {
 			while($row = $result->fetch_assoc()) {
-				echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'>$row[RES_TITLE]</a></li>";
+				if($row['PROVEN_CODE'] == 0) {
+					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'>$row[RES_TITLE]</a></li>";
+ 				} else if ($row['PROVEN_CODE'] == 1) {
+ 					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'><strong>$row[RES_TITLE]</strong></a></li>";
+ 				}
 			}
 		}
 	}
@@ -68,6 +78,8 @@ function detail_res_title() {
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
 			echo"<h1 class='display-4'>$row[RES_TITLE]</h1>";
+			echo"<td><a href='report.php?res_id=$res_id&detail_id=detail_id=0');'><p onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</p></a>
+			</td>";
 		} 
 		//잘못된 주소
 		else {
@@ -84,21 +96,34 @@ function detail_view() {
 	global $db;
 	$res_id = $_GET['res_id'];
 
-	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY DETAIL_ID DESC";
+	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, DETAIL_ID DESC";
 
 	if($result = $db->query($query_detail_select)) {
 		while($row = $result->fetch_assoc()) {
-			
 			$input_time = date("m.d",strtotime($row['INPUT_TIME']));
-			echo"<tr>";
-			echo"<td>$row[RES_MENU]</td>";
-			echo"<td>$row[RES_PRICE]</td>";
-			echo"<td>$input_time</td>";
-			echo"
-			<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');'><span aria-hidden='true' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">&times;</span></a>
-			</td>";			
-			
-			echo"</tr>";
+
+			//증명X
+			if($row['PROVEN_CODE'] == 0) {
+				echo"<tr>";
+				echo"<td>$row[RES_MENU]</td>";
+				echo"<td>$row[RES_PRICE]</td>";
+				echo"<td>$input_time</td>";
+				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');'><span aria-hidden='true' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">&times;</span></a> <small>$row[REPORT_COUNT]</small></td>";			
+				
+				echo"</tr>";
+			} 
+			//증명됨
+			else if ($row['PROVEN_CODE'] == 1) {
+				echo"<tr>";
+				echo"<td><strong>$row[RES_MENU]</strong></td>";
+				echo"<td><strong>$row[RES_PRICE]</strong></td>";
+				echo"<td><strong>$input_time</strog></td>";
+				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');'><span aria-hidden='true' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">&times;</span></a></td>";			
+				
+				echo"</tr>";
+			} else {
+				echo"<script>alert('error: 01'); location.href='index.php';</script>";
+			}
 		}
 	}
 }
