@@ -5,7 +5,7 @@ include 'top.php';
 <div class="container">
 
 
-	<p class="lead">음식점 정보 입력하기</p>
+	<p class="lead text-center">음식점 정보 입력하기</p>
 	<br/>
 	
 	<form method="post" action="submit.php" onsubmit="return enter_check();" name="info">
@@ -13,14 +13,11 @@ include 'top.php';
 			<tbody>
 				<tr>
 					<div class="input-group">
-					  <input type="text" class="form-control" placeholder="음식점명" aria-label="음식점명" aria-describedby="basic-addon1" name="title" id="title" size="20">
+					  <input type="text" class="form-control" id="res_title" placeholder="음식점명" aria-label="음식점명" aria-describedby="basic-addon1" name="title" id="title" size="20">
 					</div>
 				</tr>
 				<br/>
-				<tr>
-					<button type="button" class="btn btn-outline-dark" onClick="insRow()">추가</button>
-				</tr>
-				<br/><br/>
+				
 				<tr>
 					<td> <input type="text" class="form-control" placeholder="메뉴" name="menu[]" size="15">  </td>
 					<td> <input type="number" class="form-control" placeholder="가격" name="price[]" min=1000 max="100000">  </td>
@@ -28,8 +25,13 @@ include 'top.php';
 				</tr>
 			</tbody>
 		</table>
-
-		<button class="btn btn-default btn-lg btn-block" type="submit">입력</button>
+		<blockquote class="blockquote text-center">
+		  <button type="button" class="btn btn-outline-dark" onClick="insRow()">추가</button>
+		</blockquote>
+		
+	</br>
+				
+		<button class="btn btn-dark btn-block" type="submit">입력</button>
 
 	</form>
 

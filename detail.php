@@ -4,7 +4,8 @@ include 'top.php';
 
 
 <div class="container">
-  <small class="text-muted" onclick="window.history.back();">뒤로가기</small>
+
+  <span class="fs-13 text-gray-soft" onclick="window.history.back();">뒤로 가기</span>
   <?=detail_res_title()?>
   <br/>
   <table class="table table-bordered">

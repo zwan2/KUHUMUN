@@ -77,7 +77,8 @@ function detail_res_title() {
 	$query_res_select = "SELECT RES_TITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
-			echo"<h1 class='display-4'>$row[RES_TITLE]</h1>";
+			echo"<h2 class='page-title mb-2 mb-md-0'>$row[RES_TITLE]</h2>";
+			
 			echo"<td><a href='report.php?res_id=$res_id&detail_id=detail_id=0');'><p onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</p></a>
 			</td>";
 		} 
@@ -127,4 +128,16 @@ function detail_view() {
 		}
 	}
 }
+/*
+function index_detail() {
+	global $db;
+	$query_schema_select = "SELECT TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'RESTAURANT';";
+
+	if($result = $db->query($query_schema_select)) {	
+		$row = $result->fetch_assoc();
+		echo $row[1];
+	}
+
+}
+*/
 ?>
