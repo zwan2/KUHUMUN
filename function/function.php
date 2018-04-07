@@ -4,7 +4,7 @@
 rowItem += "<td> <input type='text' class='form-control' placeholder='메뉴' name='menu[]' size='15'> </td>"
 rowItem += "<td> <input type='number' class='form-control' placeholder='가격' name='price[]' min='1000' max='100000'>  </td>"
 
-rowItem += "<td><button type='button' class='close' aria-label='Close' onClick='removeRow()'><span aria-hidden='true'>&times;</span></button></td>"
+rowItem += "<td><button id='remove_button' type='button' class='close' aria-label='Close' onClick='removeRow()'><span aria-hidden='true'>&times;</span></button></td>"
 rowItem += "</tr>"
 function insRow() {
 	$('#res_table').append(rowItem)
@@ -56,7 +56,7 @@ function list_view() {
 	} 
 	//DEFAULT
 	else {
-		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, RES_TITLE ASC";
+		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT ORDER BY  RES_TITLE ASC";
 		if($result = $db->query($query_res_select)) {
 			while($row = $result->fetch_assoc()) {
 				if($row['PROVEN_CODE'] == 0) {
@@ -78,8 +78,8 @@ function detail_res_title() {
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
 			echo"<h2 class='page-title mb-2 mb-md-0'>$row[RES_TITLE]</h2>";
-			
-			echo"<td><a href='report.php?res_id=$res_id&detail_id=detail_id=0');'><p onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</p></a>
+
+			echo"<a href='report.php?res_id=$res_id&detail_id=detail_id=0');'><p onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</p></a>
 			</td>";
 		} 
 		//잘못된 주소
@@ -109,17 +109,17 @@ function detail_view() {
 				echo"<td>$row[RES_MENU]</td>";
 				echo"<td>$row[RES_PRICE]</td>";
 				echo"<td>$input_time</td>";
-				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');'><span aria-hidden='true' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">&times;</span></a> <small>$row[REPORT_COUNT]</small></td>";			
+				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";			
 				
 				echo"</tr>";
 			} 
 			//증명됨
 			else if ($row['PROVEN_CODE'] == 1) {
 				echo"<tr>";
-				echo"<td><strong>$row[RES_MENU]</strong></td>";
-				echo"<td><strong>$row[RES_PRICE]</strong></td>";
-				echo"<td><strong>$input_time</strog></td>";
-				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');'><span aria-hidden='true' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">&times;</span></a></td>";			
+				echo"<td><p class='font-weight-bold'>$row[RES_MENU]</p></td>";
+				echo"<td><p class='font-weight-bold'>$row[RES_PRICE]</p></td>";
+				echo"<td>$input_time</td>";
+				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\");'><span aria-hidden='true'>&times;</span></a></td>";			
 				
 				echo"</tr>";
 			} else {

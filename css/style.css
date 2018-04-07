@@ -1,3 +1,4 @@
+/*GLOBAL*/
 *:hover, *:focus, *:active {
     outline: none !important;
 
@@ -13,10 +14,31 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   /* margin-top: 0; */
   margin-bottom: 20px;
   /* line-height: 1.4; */
-  color: #272727;
+  color: #202020;
   letter-spacing: -0.01em;
 }
 
+@media (max-width: 991px) {
+  .display-1 {
+    font-size: 42px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  h5, .h5 {
+  font-size: 14px !important;
+} }
+.text-gray-soft {
+  color: #838E95 !important;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+/*NAV*/
 .navbar {
   border-bottom: 1px solid #E5E9EF;
 }
@@ -33,40 +55,52 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 .navbar-toggler-icon {
   border: none !important;
 }
+.nav-link {
+  color: #838E95 !important;
 
-#main_img {
-  margin: 0 auto;
-  display: block;
 }
-
 @media (max-width: 576px) {
+  .nav-link {
+
+   font-weight: 300;
+  }
   #nav-item-top {
     margin-top: 0.5rem !important;
     border-top: 1px solid #E5E9EF;
   }
 }
 
-@media (max-width: 991px) {
-  .display-1 {
-    font-size: 42px !important;
-  }
-}
-.text-bold {
-  font-weight: bold;
+
+/*INDEX*/
+#main_img {
+  margin: 0 auto;
+  display: block;
 }
 
-@media (max-width: 767px) {
-  h5, .h5 {
-  font-size: 14px !important;
-} }
-.text-gray-soft {
-  color: #838E95 !important;
+.bd-title {
+  margin-top: 1rem;
+  margin-bottom: .5rem;
+  font-weight: 300;
+}
+.bd-lead {
+  font-size: 1.125rem;
+  font-weight: 300;
 }
 
 
 
+/*ENTER*/
+#res_title {
+  margin: 0 0.8em;
+}
+
+#remove_button {
+  height: 1.4em;
+  line-height: 1.4em;
+}
 
 
+/*LIST*/
 .form-control:focus {
   color: #495057;
   background-color: #fff;
@@ -76,12 +110,17 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 
-
-#res_title {
-  margin: 0 0.8em;
+/*DETAIL*/
+#report_button {
+  color: #D50000 !important;
 }
+
+/*footer*/
+
 
 #footer {
   
   border-top: 1px solid #E5E9EF;
 }
+
+

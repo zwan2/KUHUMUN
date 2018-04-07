@@ -5,8 +5,9 @@ include 'top.php';
 <div class="container">
 
 
-	<p class="lead text-center">음식점 정보 입력하기</p>
-	<br/>
+	<h1 class="mb-1 text-center">정보 입력</h1>
+	<p class="fs-14 text-gray text-center mb-5">음식점명, 메뉴, 가격을 아는대로 입력해주세요.</p>
+	
 	
 	<form method="post" action="submit.php" onsubmit="return enter_check();" name="info">
 		<table id="res_table" class="table">

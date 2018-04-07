@@ -4,11 +4,10 @@ include 'top.php';
 
 
 <div class="container">
-  <blockquote class="blockquote text-center">
+
+  <h1 class="mb-1 text-center">음식점 리스트(ㄱ-ㅎ)</h1>
+  <p class="fs-14 text-gray text-center mb-5">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
   
-    <p class="lead"><a href="list.php">음식점 리스트(ㄱ-ㅎ)</a></p>
-    <p class="font-weight-bold">확실한 정보는 굵게 표시됩니다.</p>
-  </blockquote>
 	<form method="get" action="<?=$_SERVER['SCRIPT_NAME']?>" onsubmit="return search_check();" name="list_search">
       
 

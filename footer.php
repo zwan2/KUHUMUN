@@ -1,7 +1,7 @@
 <div class="container">
 	<footer id="footer">
 		<br/>
-		<p class="text-center"><small>건대후문</small></p>
+		<a href="intro.php"><p class="text-center"><small>건대후문</small></p></a>
 	</footer>
 </div>
 </body>

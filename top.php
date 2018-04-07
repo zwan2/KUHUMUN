@@ -37,16 +37,15 @@ include './function/function.php';
 
 <nav class="navbar navbar-expand-lg navbar-light">
   <div class="container">
-    <a href="index.php" class="navbar-brand">건대후문</a>
+    <a href="index.php" class="navbar-brand">건대후문<em>beta</em></a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="navbar-nav">
-        <a class="nav-link" id="nav-item-top" href="intro.php">소개</a>
-        <a class="nav-link" href="enter.php">정보 입력</a>
+      <div class="navbar-nav">     
+        <a class="nav-link" id="nav-item-top" href="enter.php">정보 입력</a>
         <a class="nav-link" href="list.php">리스트</a>
       </div>
 
