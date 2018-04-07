@@ -42,9 +42,9 @@ function list_view() {
 			if($row = $result->fetch_assoc()) {
 				
 				if($row['PROVEN_CODE'] == 0) {
-					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'>$row[RES_TITLE]</a></li>";
+					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
  				} else if ($row['PROVEN_CODE'] == 1) {
- 					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'><p>$row[RES_TITLE]</p></a></li>";
+ 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><p>$row[RES_TITLE]</p></li></a>";
  				}
 
 			} 
@@ -60,9 +60,9 @@ function list_view() {
 		if($result = $db->query($query_res_select)) {
 			while($row = $result->fetch_assoc()) {
 				if($row['PROVEN_CODE'] == 0) {
-					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'>$row[RES_TITLE]</a></li>";
+					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
  				} else if ($row['PROVEN_CODE'] == 1) {
- 					echo"<li class='list-group-item'><a href='detail.php?res_id=$row[RES_ID]'><strong>$row[RES_TITLE]</strong></a></li>";
+ 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
  				}
 			}
 		}
@@ -77,9 +77,9 @@ function detail_res_title() {
 	$query_res_select = "SELECT RES_TITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
-			echo"<h2 class='page-title mb-2 mb-md-0'>$row[RES_TITLE]</h2>";
+			echo"<h2 class='page-title mb-0 mb-md-0'>$row[RES_TITLE]</h2>";
 
-			echo"<a href='report.php?res_id=$res_id&detail_id=detail_id=0');'><p onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</p></a>
+			echo"<a href='report.php?res_id=$res_id&detail_id=detail_id=0');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</a>
 			</td>";
 		} 
 		//잘못된 주소
@@ -106,7 +106,7 @@ function detail_view() {
 			//증명X
 			if($row['PROVEN_CODE'] == 0) {
 				echo"<tr>";
-				echo"<td>$row[RES_MENU]</td>";
+				echo"<td><p>$row[RES_MENU]</p></td>";
 				echo"<td>$row[RES_PRICE]</td>";
 				echo"<td>$input_time</td>";
 				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";			
@@ -123,8 +123,21 @@ function detail_view() {
 				
 				echo"</tr>";
 			} else {
-				echo"<script>alert('error: 01'); location.href='index.php';</script>";
+				echo"<script>alert('error: 01'); location.href='/';</script>";
 			}
+		}
+	}
+}
+
+function detail_comment() {
+	global $db;
+	$res_id = $_GET['res_id'];
+	$query_comment_select = "SELECT COMMENT FROM COMMENT WHERE RES_ID ='$res_id' ORDER BY COMMENT_ID DESC";
+
+	if($result = $db->query($query_comment_select)) {
+		while($row = $result->fetch_assoc()) {
+			echo " <small class='font-weight-light'>$row[COMMENT]</small><br/>";
+
 		}
 	}
 }

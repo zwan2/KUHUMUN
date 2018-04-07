@@ -5,11 +5,12 @@ include 'top.php';
 
 <div class="container">
 
-  <span class="fs-13 text-gray-soft" onclick="window.history.back();">뒤로 가기</span>
+  <span class="fs-13 text-gray-soft" onclick="window.history.back();"><a href="#">뒤로 가기</a></span>
   <br/><br/>
   <?=detail_res_title()?>
-  <br/>
-  <p class="font-weight-bold">확실한 정보는 굵게 표시됩니다.</p>
+  <br/><br/>
+<br/>
+  <p class="fs-14 text-gray mb-1">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
   <table class="table table-bordered">
     <thead>
       <tr>
@@ -24,7 +25,39 @@ include 'top.php';
     </tbody>
   </table>
 
+<br/><hr/><br/>
+<form method="post" action="comment.php" onsubmit="return comment_check();" name="comment">
+  <div class="form-row align-items-center">
+    <div class="col-10 col-md-11 my-1">
+      <label class="sr-only" for="inlineFormInputName">코멘트</label>
+      <input type="text" class="form-control" id="inlineFormInputName" placeholder="코멘트" maxlength="30" name="comment">
+      <input type="hidden" name="res_id" value="<?=$_GET['res_id']?>">
+    </div>
+    
+  
+    <div class="col-2 col-md-1 my-1">
+      <button type="submit" class="btn btn-outline-dark">입력</button>
+    </div>
+  </div>
+</form>
+
+  <?=detail_comment()?>
+
+
 </div>
+
+<script>
+function comment_check() {
+  var form = document.comment;
+
+  //코멘트
+  if(form.comment.value == "") {
+    form.comment.focus();
+    return false;
+  }
+
+}
+</script>
 
 
 
