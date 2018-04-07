@@ -19,7 +19,7 @@ function removeRow() {
 
 <?
 
-$db = mysqli_connect("13.124.94.126 ", "root", "06911004", "KUHUMUN", "3306");
+$db = mysqli_connect("13.124.94.126", "root", "06911004", "KUHUMUN", "3306");
 
 if(!$db) {
 	echo"DB NOT CONNECTED";
