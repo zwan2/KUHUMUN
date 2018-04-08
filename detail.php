@@ -9,8 +9,8 @@ include 'top.php';
   <br/><br/>
   <?=detail_res_title()?>
   <br/><br/>
-<br/>
-  <p class="fs-14 text-gray mb-1">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
+
+  <p class="fs-14 text-gray mb-1 text-center">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
   <table class="table table-sm">
     <thead>
       <tr>

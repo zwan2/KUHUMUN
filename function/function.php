@@ -109,13 +109,16 @@ function detail_res_title() {
 function detail_view() {
 	global $db;
 	$res_id = $_GET['res_id'];
+	$row_count = 0;
 
 	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC, REPORT_COUNT ASC, DETAIL_ID DESC";
+
 
 	if($result = $db->query($query_detail_select)) {
 		while($row = $result->fetch_assoc()) {
 			$input_time = date("m.d",strtotime($row['INPUT_TIME']));
 			$res_price = number_format((int)$row['RES_PRICE']);
+			
 			//증명X
 			if($row['PROVEN_CODE'] == 0) {
 				echo"<tr>";
@@ -137,6 +140,12 @@ function detail_view() {
 				echo"</tr>";
 			} else {
 				echo"<script>alert('error: 01'); location.href='/';</script>";
+			}
+
+			//공백
+			$row_count++;
+			if($row_count%10 == 0) {
+				echo"<tr><td>　</td><td>　</td><td>　</td><td>　</td></tr>";
 			}
 		}
 	}
