@@ -57,7 +57,7 @@ function list_view() {
 				if($row['PROVEN_CODE'] == 0) {
 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
  				} else if ($row['PROVEN_CODE'] == 1) {
- 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><p>$row[RES_TITLE]</p></li></a>";
+ 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
  				}
 
 			} 
@@ -110,7 +110,7 @@ function detail_view() {
 	global $db;
 	$res_id = $_GET['res_id'];
 
-	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, DETAIL_ID DESC";
+	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC, REPORT_COUNT ASC, DETAIL_ID DESC";
 
 	if($result = $db->query($query_detail_select)) {
 		while($row = $result->fetch_assoc()) {
@@ -130,7 +130,7 @@ function detail_view() {
 			else if ($row['PROVEN_CODE'] == 1) {
 				echo"<tr>";
 				echo"<td><p class='font-weight-bold'>$row[RES_MENU]</p></td>";
-				echo"<td><p class='font-weight-bold'>$row[RES_PRICE]</p></td>";
+				echo"<td><p class='font-weight-bold'>$res_price</p></td>";
 				echo"<td>$input_time</td>";
 				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\");'><span aria-hidden='true'>&times;</span></a></td>";			
 				
