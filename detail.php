@@ -11,7 +11,7 @@ include 'top.php';
   <br/><br/>
 <br/>
   <p class="fs-14 text-gray mb-1">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
-  <table class="table table-bordered">
+  <table class="table table-sm">
     <thead>
       <tr>
         <th scope="col">메뉴</th>
@@ -24,22 +24,23 @@ include 'top.php';
       <?=detail_view()?>
     </tbody>
   </table>
-
-<br/><hr/><br/>
-<form method="post" action="comment.php" onsubmit="return comment_check();" name="comment">
-  <div class="form-row align-items-center">
-    <div class="col-10 col-md-11 my-1">
-      <label class="sr-only" for="inlineFormInputName">코멘트</label>
-      <input type="text" class="form-control" id="inlineFormInputName" placeholder="코멘트" maxlength="30" name="comment">
-      <input type="hidden" name="res_id" value="<?=$_GET['res_id']?>">
-    </div>
-    
   
-    <div class="col-2 col-md-1 my-1">
-      <button type="submit" class="btn btn-outline-dark">입력</button>
+
+  <br/><hr/>
+  <form method="post" action="comment.php" onsubmit="return comment_check();" name="comment">
+    <div class="form-row align-items-center">
+      <div class="col-10 col-md-11 my-1">
+        <label class="sr-only" for="inlineFormInputName">코멘트</label>
+        <input type="text" class="form-control" id="inlineFormInputName" placeholder="코멘트" maxlength="30" name="comment">
+        <input type="hidden" name="res_id" value="<?=$_GET['res_id']?>">
+      </div>
+      
+    
+      <div class="col-2 col-md-1 my-1">
+        <button type="submit" class="btn btn-outline-dark">입력</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
 
   <?=detail_comment()?>
 
