@@ -2,7 +2,7 @@
 
 	var rowItem = "<tr>"
 rowItem += "<td> <input type='text' class='form-control' placeholder='메뉴' name='menu[]' size='15'> </td>"
-rowItem += "<td> <input type='number' class='form-control' placeholder='가격' name='price[]' min='1000' max='100000'>  </td>"
+rowItem += "<td> <input type='number' class='form-control' placeholder='가격' name='price[]' min='100' max='100000'>  </td>"
 
 rowItem += "<td><button id='remove_button' type='button' class='close' aria-label='Close' onClick='removeRow()'><span aria-hidden='true'>&times;</span></button></td>"
 rowItem += "</tr>"
@@ -14,6 +14,19 @@ function removeRow() {
 	$('#res_table').on("click", "button", function() {
 	$(this).closest("tr").remove()
 })};
+function frmCheck() {
+  var frm = document.form;
+  
+  for(var i = 0; i <= frm.elements.length - 1; i++) {
+	if(frm.elements[i].name == "addText") {
+		if(!frm.elements[i].value) {
+            alert("값을 모두 입력하세요!");
+            frm.elements[i].focus();
+	 		return;
+        }     
+	}
+   }
+ }	
 </script>
 
 
@@ -50,7 +63,7 @@ function list_view() {
 			} 
 			//잘못된 주소
 			else {
-				echo"<script>window.history.back();</script>";
+				echo"<li class='list-group-item'><p>결과가 없습니다.</p></li>";
 			}
 		}
 	} 
@@ -102,12 +115,12 @@ function detail_view() {
 	if($result = $db->query($query_detail_select)) {
 		while($row = $result->fetch_assoc()) {
 			$input_time = date("m.d",strtotime($row['INPUT_TIME']));
-
+			$res_price = number_format((int)$row['RES_PRICE']);
 			//증명X
 			if($row['PROVEN_CODE'] == 0) {
 				echo"<tr>";
 				echo"<td><p>$row[RES_MENU]</p></td>";
-				echo"<td>$row[RES_PRICE]</td>";
+				echo"<td>$res_price</td>";
 				echo"<td>$input_time</td>";
 				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";			
 				
@@ -132,15 +145,18 @@ function detail_view() {
 function detail_comment() {
 	global $db;
 	$res_id = $_GET['res_id'];
-	$query_comment_select = "SELECT COMMENT FROM COMMENT WHERE RES_ID ='$res_id' ORDER BY COMMENT_ID DESC";
+	$query_comment_select = "SELECT COMMENT, INPUT_TIME FROM COMMENT WHERE RES_ID ='$res_id' ORDER BY COMMENT_ID DESC";
 
 	if($result = $db->query($query_comment_select)) {
 		while($row = $result->fetch_assoc()) {
-			echo " <small class='font-weight-light'>$row[COMMENT]</small><br/>";
+			$input_time = substr($row['INPUT_TIME'],5,11);
+			echo " <small class='font-weight-light'>$row[COMMENT]</small>";
+			echo "<small class='comment_time'> $input_time</small><br/>";
 
 		}
 	}
 }
+
 /*
 function index_detail() {
 	global $db;

@@ -6,7 +6,7 @@ include 'top.php';
 
 
 	<h1 class="mb-1 text-center">정보 입력</h1>
-	<p class="fs-14 text-gray text-center mb-5">음식점명, 메뉴, 가격을 아는대로 입력해주세요.</p>
+	<p class="fs-14 text-gray text-center mb-5">음식점명, 메뉴, 가격을 아는대로 입력해주세요.<br/>이미 등록된 음식점에도 정보를 더 입력할 수 있습니다.</p>
 	
 	
 	<form method="post" action="submit.php" onsubmit="return enter_check();" name="info">
@@ -21,7 +21,7 @@ include 'top.php';
 				
 				<tr>
 					<td> <input type="text" class="form-control" placeholder="메뉴" name="menu[]" size="15">  </td>
-					<td> <input type="number" class="form-control" placeholder="가격" name="price[]" min=1000 max="100000">  </td>
+					<td> <input type="number" class="form-control" placeholder="가격" name="price[]" min=100 max="100000">  </td>
 					<td>　</td>
 				</tr>
 			</tbody>
@@ -32,7 +32,7 @@ include 'top.php';
 		
 	</br>
 				
-		<button class="btn btn-dark btn-block" type="submit">입력</button>
+		<button class="btn btn-dark btn-block" type="submit" onClick="return frmCheck();">입력</button>
 
 	</form>
 
@@ -49,18 +49,12 @@ include 'top.php';
 function enter_check(){
 	var form = document.info;
 	form.title.value.replace(/ /gi, "");
-	//전부 입력했는지 검사
+
+	//음식점명 입력했는지 검사
 	if(form.title.value=="") {
 		alert("음식점명을 입력하세요");
 		return false;
 	} 
-
-
-
-	if(form.menu.value=="" || form.price.value=="") {
-		alert("음식점 정보를 모두 입력하세요");
-		return false;
-	}
 
 	
 	$("#title").bind("keyup",function(){
@@ -71,9 +65,19 @@ function enter_check(){
 	} 
 
 	});
-
-
-	
+}
+function frmCheck(){
+	//나머지 입력했는지 검사
+	var form = document.info;
+	for(var i = 0; i <= form.elements.length - 1; i++) {
+		if(form.elements[i].name == "menu[]" || form.elements[i].name == "price[]") {
+			if(!form.elements[i].value) {
+		        alert("값을 모두 입력하세요!");
+		        form.elements[i].focus();
+		 		return false;
+		    }     
+		}
+	}
 }
 </script>
 

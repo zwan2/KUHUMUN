@@ -5,7 +5,7 @@ include 'top.php';
 
 <div class="container">
 
-  <h1 class="mb-1 text-center">음식점 리스트(ㄱ-ㅎ)</h1>
+  <a href="list.php"><h1 class="mb-1 text-center">음식점 리스트(ㄱ-ㅎ)</h1></a>
   <p class="fs-14 text-gray text-center mb-5">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
 
 	<form method="get" action="<?=$_SERVER['SCRIPT_NAME']?>" onsubmit="return search_check();" name="list_search">
@@ -13,7 +13,7 @@ include 'top.php';
 
     <div class="form-group">
         <div class="form-group--search form-group--search--left">
-            <input class="form-control form-control-lg form-control--rounded" name="search" type="search" placeholder="음식점명으로 검색" id="" placeholder="Search" maxlength="20">
+            <input class="form-control form-control-lg form-control--rounded" name="search" type="search" placeholder="음식점명으로 검색" id="" placeholder="Search" maxlength="20" value="<?if(isset($_GET['search']))echo $_GET['search']?>">
             <button class="btn-submit" type="submit"><i class="bootstrap-themes-icon-search"></i></button>
         </div>
     </div>

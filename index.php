@@ -28,19 +28,21 @@ include 'top.php';
 	<br/><hr/><br/>
 	<div>
 		<h1 class="bd-title" id="content">건대 후문은?</h1>
-		<p class="bd-lead text-justify">건대후문은 건대생 집단지성 프로젝트입니다. 후문 음식점들은 300여개나 되지만, 인터넷 등록 미비, 가격 인상 등으로 정확한 정보를 알기 힘듭니다. 300여개의 음식점들을 혼자 조사하기란 어렵지만, 함께라면 가능합니다.</p>
+		<p class="bd-lead text-justify">건대후문은 건대생 집단지성 프로젝트입니다. 후문 음식점들은 200여개나 되지만, 인터넷 등록 미비, 가격 인상 등으로 정확한 정보를 알기 힘듭니다. 혼자서 음식점들을 모두  조사하기란 어렵지만, 함께라면 가능합니다.</p>
+		<br/>
+		
+		<h1 class="bd-title" id="content">어디에 사용되나요?</h1>
+		<p class="bd-lead text-justify">입력한 정보는 학생들과 정보를 나누기 위한 목적으로 사용됩니다. 많은 건대생들이 사용할 수 있도록 알려주세요. :)</p>
+		<br/>
+
+		<h1 class="bd-title" id="content">가짜 정보가 입력되면?</h1>
+		<p class="bd-lead text-justify">신뢰성이 있다고 판단되는 정보는 굵게 표시됩니다. 신고 기능을 통해서 이용자들이 훼손을 막고, 감시할 수 있도록 설계되어 있습니다.</p>
 		<br/>
 
 		<h1 class="bd-title" id="content">중문은요?</h1>
-		<p class="bd-lead text-justify">중문 음식점의 정보는 대부분의 지도 서비스에 등록되어 있기 때문에 입력하지 않으셔도 됩니다. 저희 프로젝트는 미등록된 후문 지역의 정보를 확실히 구축하고자 합니다.</p>
+		<p class="bd-lead text-justify">중문 음식점의 정보는 대부분의 지도 서비스에 등록되어 있기 때문에 입력하지 않으셔도 됩니다. 저희 프로젝트는 등록이 미비한 후문 지역의 정보를 구축하고자 합니다.</p>
 		<br/>
-
-		<h1 class="bd-title" id="content">카페도 되나요?</h1>
-		<p class="bd-lead text-justify">정보가 잘 나와있지 않는 카페라면 가능합니다.</p>
-		<br/>
-
-		<h1 class="bd-title" id="content">어디에 사용되나요?</h1>
-		<p class="bd-lead text-justify">입력한 정보는 학생들과 정보를 나누기 위한 목적으로 사용됩니다. 많은 건대생들이 사용할 수 있도록 홍보 부탁들드립니다. :)</p>
+	
 
 	</div>
 

@@ -5,7 +5,9 @@
 }
 
 * { font-family: 'Noto Sans KR', 'Sans-serif'; }
-
+strong {
+  font-weight: 700 !important;
+}
 a {
   color: #272727 !important;
   text-decoration: none !important;
@@ -44,6 +46,7 @@ input[type="number"]::-webkit-inner-spin-button {
 .no-margin {
   margin-bottom: 0 !important;
 }
+
 
 
 /*NAV*/
@@ -121,6 +124,10 @@ input[type="number"]::-webkit-inner-spin-button {
 /*DETAIL*/
 #report_button {
   color: #D50000 !important;
+}
+.comment_time {
+  font-size: 60% !important;
+  font-weight: 300 !important;
 }
 
 /*footer*/

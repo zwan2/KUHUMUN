@@ -5,7 +5,7 @@ include 'top.php';
 
 <div class="container">
 
-  <span class="fs-13 text-gray-soft" onclick="window.history.back();"><a href="#">뒤로 가기</a></span>
+  <span class="fs-13 text-gray-soft"><a href="list.php">뒤로 가기</a></span>
   <br/><br/>
   <?=detail_res_title()?>
   <br/><br/>
