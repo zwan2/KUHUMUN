@@ -10,7 +10,8 @@ $input_time = date("y-m-d H:i:s");
 
 
 //업로드한 파일을 저장할 디렉토리
-$save_dir = "./img/menu/";
+
+$save_dir = "/img/menu/";
 
 //파일이 HTTP POST 방식을 통해 정상적으로 업로드되었는지 확인한다.
 if(is_uploaded_file($_FILES["image3"]["tmp_name"])) {
