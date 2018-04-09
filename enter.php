@@ -4,7 +4,8 @@ include 'top.php';
 
 <div class="container">
 
-	<span class="fs-13 text-gray-soft"><a href="img_enter.php">이미지로 입력하기</a></span>
+	<!--<span class="fs-13 text-gray-soft"><a href="img_enter.php">이미지로 입력</a></span>
+	-->
 	<h1 class="mb-1 text-center">정보 입력</h1>
 	<p class="fs-14 text-gray text-center mb-5">음식점명, 메뉴, 가격을 아는대로 입력해주세요.<br/>이미 등록된 음식점에도 정보를 더 입력할 수 있습니다.</p>
 	
