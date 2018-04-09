@@ -11,7 +11,7 @@ $input_time = date("y-m-d H:i:s");
 
 //업로드한 파일을 저장할 디렉토리
 
-$save_dir = dirname(__FILE__)."/img/menu/";
+$save_dir = $_SERVER['DOCUMENT_ROOT']."/img/menu/";
 //echo $save_dir;
 
 //파일이 HTTP POST 방식을 통해 정상적으로 업로드되었는지 확인한다.
