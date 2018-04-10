@@ -67,6 +67,26 @@ function list_view() {
 			}
 		}
 	} 
+
+	//TYPE으로 검색
+	else if(isset($_GET['type_search'])) {
+		$type_search = preg_replace("/\s+/", "", $_GET['type_search']);
+		$type_search = "%".$type_search."%";
+	
+		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_TYPE LIKE '$type_search' ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, RES_TITLE ASC";
+
+		if($result = $db->query($query_res_select)) {
+			while($row = $result->fetch_assoc()) {
+				
+				if($row['PROVEN_CODE'] == 0) {
+					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
+ 				} else if ($row['PROVEN_CODE'] == 1) {
+ 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
+ 				}
+
+			} 
+		}
+	}
 	//DEFAULT
 	else {
 		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT ORDER BY  RES_TITLE ASC";
@@ -82,6 +102,19 @@ function list_view() {
 	}
 
 }
+
+function list_view_type() {
+	global $db;
+
+	$query_type_select = "SELECT TYPE_ID, TYPE_NAME FROM RES_TYPE";
+
+	if($result = $db->query($query_type_select)) {
+		while($row = $result->fetch_assoc()) {
+			echo "<a href='list.php?type_search=$row[TYPE_ID]' class='badge badge-pill badge-warning type_search'>$row[TYPE_NAME]</a>";
+		}
+	}
+}
+
 function detail_res_title() {
 	global $db;
 	$res_id = $_GET['res_id'];

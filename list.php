@@ -8,7 +8,7 @@ include 'top.php';
   <a href="list.php"><h1 class="mb-1 text-center">음식점 리스트</h1></a>
   <p class="fs-14 text-gray text-center mb-5">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
 
-	<form method="get" action="<?=$_SERVER['SCRIPT_NAME']?>" onsubmit="return search_check();" name="list_search">
+	<form method="get" action="<?=$_SERVER['SCRIPT_NAME']?>" onsubmit="return search_check();" id="list_search" name="list_search">
       
 
     <div class="form-group">
@@ -17,8 +17,9 @@ include 'top.php';
             <button class="btn-submit" type="submit"><i class="bootstrap-themes-icon-search"></i></button>
         </div>
     </div>
-
+    <?=list_view_type()?>  
   </form>
+
 
 
 	<ul class="list-group list-group-flush">

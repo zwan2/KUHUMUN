@@ -119,6 +119,11 @@ input[type="number"]::-webkit-inner-spin-button {
   box-shadow: none !important;
 }
 
+.type_search {
+  font-weight: 700;
+  margin: 0.4em !important;
+}
+
 
 /*DETAIL*/
 #report_button {
