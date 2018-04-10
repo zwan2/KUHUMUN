@@ -5,7 +5,7 @@ include 'top.php';
 
 <div class="container">
 
-  <a href="list.php"><h1 class="mb-1 text-center">음식점 리스트(ㄱ-ㅎ)</h1></a>
+  <a href="list.php"><h1 class="mb-1 text-center">음식점 리스트</h1></a>
   <p class="fs-14 text-gray text-center mb-5">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
 
 	<form method="get" action="<?=$_SERVER['SCRIPT_NAME']?>" onsubmit="return search_check();" name="list_search">
