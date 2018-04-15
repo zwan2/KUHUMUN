@@ -19,8 +19,7 @@ include './function/function.php';
 
   <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <!--캐쉬-->
-  <meta http-equiv="Pragma" content="no-cache">
+
 
   <title>건대후문</title>
 
