@@ -49,7 +49,7 @@ function list_view() {
 		$search = preg_replace("/\s+/", "", $_GET['search']);
 		$search = "%".$search."%";
 	
-		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_TITLE LIKE '$search' ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, RES_TITLE ASC";
+		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_TITLE LIKE '$search' ORDER BY RES_TITLE ASC";
 
 		if($result = $db->query($query_res_select)) {
 			if($row = $result->fetch_assoc()) {
@@ -70,26 +70,39 @@ function list_view() {
 
 	//TYPE으로 검색
 	else if(isset($_GET['type_search'])) {
-		$type_search = preg_replace("/\s+/", "", $_GET['type_search']);
-		$type_search = "%".$type_search."%";
-	
-		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_TYPE LIKE '$type_search' ORDER BY PROVEN_CODE DESC, REPORT_COUNT ASC, RES_TITLE ASC";
-
-		if($result = $db->query($query_res_select)) {
-			while($row = $result->fetch_assoc()) {
-				
-				if($row['PROVEN_CODE'] == 0) {
-					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
- 				} else if ($row['PROVEN_CODE'] == 1) {
- 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
- 				}
-
-			} 
+		$type_id = $_GET['type_search'];
+		$query_type_select = "SELECT RES_STRING FROM RES_TYPE WHERE TYPE_ID = '$type_id'";
+		if($result = $db->query($query_type_select)) {
+			if($row = $result->fetch_array()) {
+				$res_string = $row[0];
+				$res_array = explode(',' , $res_string);
+			}
 		}
+
+		$arr_cnt = count($res_array);
+
+		for($i=0; $i<$arr_cnt; $i++) {
+			$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_ID = '$res_array[$i]' ORDER BY RES_TITLE ASC";
+
+			if($result = $db->query($query_res_select)) {
+				while($row = $result->fetch_assoc()) {
+
+					if($row['PROVEN_CODE'] == 0) {
+					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
+	 				} else if ($row['PROVEN_CODE'] == 1) {
+	 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
+	 				}
+
+				}
+			}
+		}
+
+
 	}
+
 	//DEFAULT
 	else {
-		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT ORDER BY  RES_TITLE ASC";
+		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT ORDER BY RES_TITLE ASC";
 		if($result = $db->query($query_res_select)) {
 			while($row = $result->fetch_assoc()) {
 				if($row['PROVEN_CODE'] == 0) {
@@ -100,9 +113,19 @@ function list_view() {
 			}
 		}
 	}
-
 }
+function list_random() {
+	global $db;
 
+	$query_res_select = "SELECT RES_ID FROM RESTAURANT ORDER BY rand() LIMIT 1";
+
+	if($result = $db->query($query_res_select)) {
+		if($row = $result->fetch_assoc()) {
+			echo"<button type='button' class='btn btn-outline-dark text-center' onclick=\"window.location.href='detail.php?res_id=$row[RES_ID]'\">아무거나</button>";
+
+		}
+	}
+}
 function list_view_type() {
 	global $db;
 
@@ -110,7 +133,7 @@ function list_view_type() {
 
 	if($result = $db->query($query_type_select)) {
 		while($row = $result->fetch_assoc()) {
-			echo "<a href='list.php?type_search=$row[TYPE_ID]' class='badge badge-pill badge-warning type_search'>$row[TYPE_NAME]</a>";
+			echo "<a href='list.php?type_search=$row[TYPE_ID]' class='badge badge-pill badge-dark type_search'>$row[TYPE_NAME]</a>";
 		}
 	}
 }
@@ -177,7 +200,7 @@ function detail_view() {
 
 			//공백
 			$row_count++;
-			if($row_count%10 == 0) {
+			if($row_count%8 == 0) {
 				echo"<tr><td>　</td><td>　</td><td>　</td><td>　</td></tr>";
 			}
 		}
