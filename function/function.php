@@ -131,6 +131,7 @@ function list_view_type() {
 
 	$query_type_select = "SELECT TYPE_ID, TYPE_NAME FROM RES_TYPE";
 
+	echo "<a href='list.php' class='badge badge-pill badge-dark type_search'>전체</a>";
 	if($result = $db->query($query_type_select)) {
 		while($row = $result->fetch_assoc()) {
 			echo "<a href='list.php?type_search=$row[TYPE_ID]' class='badge badge-pill badge-dark type_search'>$row[TYPE_NAME]</a>";
