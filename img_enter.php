@@ -16,6 +16,7 @@ include 'top.php';
 
 		<div class="col-sm-8 img-upload-section">
 			<input name="image3" type="file" accept="image/*" id="menu_images" name="menu_images">
+			<br/>
 			<img id="menu_image" class="preview_img">
 		</div> 
 			

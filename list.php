@@ -32,9 +32,7 @@ include 'top.php';
   </ul>
 
   <br/>
-
-
-
+<!--<?=list_view_new()?>-->
 	
 </div>
 

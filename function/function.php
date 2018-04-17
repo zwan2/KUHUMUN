@@ -88,9 +88,9 @@ function list_view() {
 				while($row = $result->fetch_assoc()) {
 
 					if($row['PROVEN_CODE'] == 0) {
-					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
+					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item' id='$row[RES_ID]'>$row[RES_TITLE]</li></a>";
 	 				} else if ($row['PROVEN_CODE'] == 1) {
-	 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
+	 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item' id='$row[RES_ID]'><strong>$row[RES_TITLE]</strong></li></a>";
 	 				}
 
 				}
@@ -128,24 +128,37 @@ function list_view_type() {
 	}
 }
 
+function list_view_new() {
+	global $db;
+
+	$query_detail_select = "SELECT DISTINCT RES_ID FROM RES_DETAIL ORDER BY RES_ID DESC LIMIT 5";
+	if($result = $db->query($query_detail_select)) {
+		while($row = $result->fetch_assoc()) {
+			echo $row['RES_ID'];
+		}
+	}
+}
+
 function detail_res_title() {
 	global $db;
 	$res_id = $_GET['res_id'];
-
-
+	
 	$query_res_select = "SELECT RES_TITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
-			echo"<h2 class='page-title mb-0 mb-md-0'>$row[RES_TITLE]</h2>";
-
-			echo"<a href='report.php?res_id=$res_id&detail_id=detail_id=0');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\">신고하기</a>
-			</td>";
+			echo"<h2 class='page-title mb-0 mb-md-0 text-center'>$row[RES_TITLE]</h2>";
+		
 		} 
 		//잘못된 주소
 		else {
 			echo"<script>window.history.back();</script>";
 		}
 	}
+}
+
+function detail_res_report() {
+	$res_id = $_GET['res_id'];
+	echo"<a class='float-right' href='report.php?res_id=$res_id&detail_id=detail_id=0');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span class='fs-13 text-gray-soft'>신고하기</span></a>";
 }
 
 

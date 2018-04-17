@@ -10,7 +10,7 @@ $query_comment_insert = "INSERT INTO COMMENT (RES_ID, COMMENT, USER_IP, INPUT_TI
 
 
 if($result = $db->query($query_comment_insert)) {
-	echo "<script>alert('코멘트가 등록되었습니다.'); location.href='detail.php?res_id=$res_id';</script>";	
+	echo "<script>alert('코멘트가 등록되었습니다.'); location.href='detail.php?res_id=$res_id/#c';</script>";	
 } else {
 	echo"<script>alert('error: 01'); window.history.back();</script>";
 }
