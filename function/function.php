@@ -114,18 +114,7 @@ function list_view() {
 		}
 	}
 }
-function list_random() {
-	global $db;
 
-	$query_res_select = "SELECT RES_ID FROM RESTAURANT ORDER BY rand() LIMIT 1";
-
-	if($result = $db->query($query_res_select)) {
-		if($row = $result->fetch_assoc()) {
-			echo"<button type='button' class='btn btn-outline-dark text-center' onclick=\"window.location.href='detail.php?res_id=$row[RES_ID]'\">아무거나</button>";
-
-		}
-	}
-}
 function list_view_type() {
 	global $db;
 

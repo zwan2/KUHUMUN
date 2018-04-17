@@ -9,7 +9,8 @@ include 'top.php';
   <p class="fs-14 text-gray text-center mb-4">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
 
   <blockquote class="blockquote text-center mb-4">
-  <?=list_random()?>
+ 
+  <button type='button' class='btn btn-outline-dark text-center' onclick="window.location.href='random.php'">아무거나</button>
   </blockquote>
 
   <form method="get" action="<?=$_SERVER['SCRIPT_NAME']?>" onsubmit="return search_check();" id="list_search" name="list_search">
