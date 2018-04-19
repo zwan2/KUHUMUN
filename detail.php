@@ -9,8 +9,10 @@ include 'top.php';
   <br/><br/>
   <?=detail_res_title()?>
   <br/>
-
+  <?=detail_img()?>
+  <br/>
   <p class="fs-14 text-gray mb-1 text-center">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
+  <br/>
   <table class="table table-sm">
     <thead>
       <tr>
@@ -47,6 +49,10 @@ include 'top.php';
 </div>
 
 <script>
+$('.carousel').carousel({
+  interval: false
+});
+
 function comment_check() {
   var form = document.comment;
 

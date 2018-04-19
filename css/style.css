@@ -109,6 +109,10 @@ input[type="number"]::-webkit-inner-spin-button {
   line-height: 1.5em;
 }
 
+.btn-lg {
+  margin-left: 0 !important
+}
+
 
 /*LIST*/
 .form-control:focus {
@@ -137,6 +141,29 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 60% !important;
   font-weight: 300 !important;
 }
+
+.carousel {
+  padding: 1rem;
+  margin: 1rem -15px 0;
+  border: 0.2em solid #f7f7f9 !important;
+}
+
+.carousel_img {
+    width: 80em; 
+    height: 30em !important;
+    object-fit: cover;
+}
+.caption-block {
+  background-color: rgba( 0, 0, 0, 0.8 );
+  padding: 0.1em 0.3em;
+}
+@media (max-width: 576px) {
+ .carousel_img {
+    width: 25em !important; 
+    height: 15em !important;
+  }
+}
+
 
 
 /*footer*/

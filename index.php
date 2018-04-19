@@ -31,8 +31,8 @@ include 'top.php';
 		<p class="bd-lead text-justify">건대후문은 건대생 집단지성 프로젝트입니다. 후문 음식점들은 200여개나 되지만, 인터넷 등록 미비, 가격 인상 등으로 정확한 정보를 알기 힘듭니다. 혼자서 음식점들을 모두 조사하기란 어렵지만, 함께라면 할 수 있습니다.</p>
 		<br/>
 		
-		<h1 class="bd-title" id="content">메뉴판 사진이 있다면?</h1>
-		<p class="bd-lead text-justify">음식점 정보 입력하기 - 이미지로 입력을 통해 사진을 올려주세요. 관리자가 확인 후 최종으로 업로드 합니다.</p>
+		<h1 class="bd-title" id="content">사진이 있다면?</h1>
+		<p class="bd-lead text-justify">음식점 정보 입력하기에 들어가서 사진(메뉴판, 음식)을 올려주세요. 사진은 관리자가 확인 후 최종으로 업로드 합니다.</p>
 		<br/>
 
 		<h1 class="bd-title" id="content">하고싶은 말이 있다면?</h1>

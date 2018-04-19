@@ -12,7 +12,7 @@ if($result = $db->query($query_img_select)) {
 		echo "<br/>";
 		echo $row['INPUT_TIME'];
 		echo "<br/>";
-		?><img class="img-responsive" src="./img/menu/<?=$row['IMG_NAME']?>">;
+		?><img class="img-responsive" src="./img/report/<?=$row['IMG_NAME']?>">;
 		<?
 	}
 }

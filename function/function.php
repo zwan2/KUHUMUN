@@ -162,7 +162,75 @@ function detail_res_report() {
 }
 
 
+function detail_img() {
+	global $db;
+	
+	if(isset($_GET['res_id'])) {
 
+		$res_id = $_GET['res_id'];
+		$query_img_select = "SELECT RES_MENU, IMG_NAME FROM RES_IMG WHERE RES_ID = '$res_id' ORDER BY RES_IMG_ID DESC";
+
+		if($result = $db->query($query_img_select)) {
+			$result_cnt = $result->num_rows;
+			if($result_cnt > 0) {
+				?>
+				<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+				<ol class="carousel-indicators">
+				<?
+				for($i=0; $i<$result_cnt; $i++) {?>
+					<li data-target="#carouselExampleControls" data-slide-to="<?=$i?>" class="<? if($cnt == 0) echo 'active' ?>"></li>
+				<?
+				}?>
+				</ol>
+				<div class="carousel-inner">
+				<?
+			
+				$cnt = 0;
+				while($row = $result->fetch_assoc()) {
+					?>
+					
+					<div class="carousel-item <? if($cnt == 0) echo 'active' ?> ">
+				      <img class="d-block carousel_img" src="./img/restaurant/<?=$row['IMG_NAME']?>" alt="img">
+				      
+				      <div class="carousel-caption">
+					  	<inline class="caption-block"><?=$row['RES_MENU']?>
+				      </inline>
+					  </div>
+				    </div>
+				    <?
+				    $cnt++;
+				}
+				
+				?>
+				</div>
+				  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>	  
+				</div>
+			
+				<?
+				
+			} 
+
+
+		}
+
+		//no img
+		else {
+			return;
+		}
+	} 
+	//error
+	else {
+		echo"<script>alert('error: 01'); location.href='/';</script>";
+	}
+
+}
 	
 
 function detail_view() {
@@ -170,7 +238,7 @@ function detail_view() {
 	$res_id = $_GET['res_id'];
 	$row_count = 0;
 
-	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC, REPORT_COUNT ASC, DETAIL_ID DESC";
+	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC";
 
 
 	if($result = $db->query($query_detail_select)) {

@@ -5,14 +5,15 @@ include 'top.php';
 <div class="container">
 
 	<span class="fs-13 text-gray-soft"><a href="enter.php">뒤로 가기</a></span>
-	<h1 class="mb-1 text-center">메뉴 입력 (사진)</h1>
-	<p class="fs-14 text-gray text-center mb-5">음식점명을 입력하고, 메뉴판 사진을 선택해주세요.<br/>관리자가 확인 후 최종으로 업로드합니다.</p>
+	<h1 class="mb-1 text-center">음식 사진 입력</h1>
+	<p class="fs-14 text-gray text-center mb-5">음식점 소개에 들어갈 사진을 올려주세요.(가로)<br/>관리자가 확인 후 최종으로 업로드합니다.</p>
 
  	<form method="post" action="img_submit.php" enctype="multipart/form-data" onsubmit="return enter_check();" name="info">
 		<div class="input-group">
 		  <input type="text" class="form-control" id="res_title" placeholder="음식점명" aria-label="음식점명" aria-describedby="basic-addon1" name="title" id="title" size="20">
+		  <input type="text" class="form-control" id="res_menu" placeholder="(선택)메뉴명" aria-label="메뉴명" aria-describedby="basic-addon1" name="menu" id="menu" size="20">
 		</div>
-		<br/>
+		<br/><br/>
 
 		<div class="col-sm-8 img-upload-section">
 			<input name="image3" type="file" accept="image/*" id="menu_images" name="menu_images">
@@ -44,7 +45,7 @@ function enter_check(){
 	if(form.title.value=="") {
 		alert("음식점명을 입력하세요");
 		return false;
-	} 
+	}
 
 	
 	$("#title").bind("keyup",function(){

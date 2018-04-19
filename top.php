@@ -61,7 +61,7 @@ include './function/function.php';
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <div class="navbar-nav">     
         <a class="nav-link" id="nav-item-top" href="enter.php">정보 입력</a>
-        <a class="nav-link" href="list.php">리스트</a>
+        <a class="nav-link" href="list.php">음식점 리스트</a>
       </div>
 
    
