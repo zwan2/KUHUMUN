@@ -60,7 +60,7 @@ function enter_check(){
 
 document.getElementById("menu_images").onchange = function () {
     var reader = new FileReader();
-    if(this.files[0].size>5283850){
+    if(this.files[0].size>52838500){
         alert("Image Size should not be greater than 500Kb");
         $("#menu_image").attr("src","blank");
         $("#menu_image").hide();  
