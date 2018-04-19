@@ -39,10 +39,12 @@ if(is_uploaded_file($_FILES["image3"]["tmp_name"])) {
 		if($result = $db->query($query_img_insert)) {   
    			echo"<script>location.href='complete.php';</script>";	
    		} else {
-   			echo"<script>alert('error');</script>";
+   			echo"<script>alert('error: 01');</script>";
    		}
    	}
 
+} else {
+  echo"<script>alert('error: 02');</script>";
 }
 
 
