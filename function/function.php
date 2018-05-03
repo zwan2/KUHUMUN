@@ -127,7 +127,7 @@ function list_view_type() {
 		}
 	}
 }
-
+/*
 function list_view_new() {
 	global $db;
 
@@ -138,7 +138,7 @@ function list_view_new() {
 		}
 	}
 }
-
+*/
 function detail_res_title() {
 	global $db;
 	$res_id = $_GET['res_id'];
@@ -146,8 +146,10 @@ function detail_res_title() {
 	$query_res_select = "SELECT RES_TITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
-			echo"<h2 class='page-title mb-0 mb-md-0 text-center'>$row[RES_TITLE]</h2>";
-		
+			echo"<h1 class='page-title mb-0 mb-md-0 text-center'>$row[RES_TITLE]</h1>";
+			/*if($row['RES_SUBTITLE']) {
+				echo"<footer class='blockquote-footer text-center'>$row[RES_SUBTITLE]</footer>";
+			}*/
 		} 
 		//잘못된 주소
 		else {
@@ -237,16 +239,58 @@ function detail_view() {
 	global $db;
 	$res_id = $_GET['res_id'];
 	$row_count = 0;
+	$check_code = -1;
 
-	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC";
+
+	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_MENU_CODE, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY RES_MENU_CODE ASC, PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC";
 
 
+	//SUBTITLE
+	//RESTAURANT에서 SUBTITLES 배열로 추출
+	$query_res_select = "SELECT RES_MENU_SUBTITLES FROM RESTAURANT WHERE RES_ID = '$res_id'";
+
+	if($result = $db->query($query_res_select)) {
+		if($row = $result->fetch_array()) {
+			$subtitle_string = $row[0];
+			$subtitle_array = explode(',' , $subtitle_string);
+		}
+	}
+
+
+	//DETAIL TABLE 출력문
 	if($result = $db->query($query_detail_select)) {
 		while($row = $result->fetch_assoc()) {
 			$input_time = date("m.d",strtotime($row['INPUT_TIME']));
 			$res_price = number_format((int)$row['RES_PRICE']);
 			
-			//증명X
+
+			//1. MENU SUBTITLE
+			if($check_code < $row['RES_MENU_CODE']) {
+				$res_menu_code = $row['RES_MENU_CODE'];
+				
+				//BLANK (맨윗줄만 예외처리)
+				if($check_code != -1) {
+					echo"<tr><td colspan = '4' class='menu_subtitle'>　</td></tr>";
+
+				}
+
+				//공백 (BLANK 버그) 예외처리 
+				//출력
+				if($res_menu_code != 9) {
+					echo"<tr class='bg-primary'><td colspan = '4' class='menu_subtitle'><p class='text-white font-weight-bold'>$subtitle_array[$res_menu_code]</p></td></tr>";
+				} 
+				//모든 음식이 9일 때 예외처리
+				else if ($res_menu_code== 9 && $check_code!= -1) {
+					echo"<tr><td colspan = '4' class='menu_subtitle'>　</td></tr>";
+				}
+
+				
+				$check_code = $row['RES_MENU_CODE'];
+				$row_count = 0;
+			}
+
+
+			//2-1. 증명X
 			if($row['PROVEN_CODE'] == 0) {
 				echo"<tr>";
 				echo"<td><p>$row[RES_MENU]</p></td>";
@@ -256,7 +300,7 @@ function detail_view() {
 				
 				echo"</tr>";
 			} 
-			//증명됨
+			//2-2. 증명됨
 			else if ($row['PROVEN_CODE'] == 1) {
 				echo"<tr>";
 				echo"<td><p class='font-weight-bold'>$row[RES_MENU]</p></td>";
@@ -269,11 +313,15 @@ function detail_view() {
 				echo"<script>alert('error: 01'); location.href='/';</script>";
 			}
 
-			//공백
-			$row_count++;
-			if($row_count%8 == 0) {
-				echo"<tr><td>　</td><td>　</td><td>　</td><td>　</td></tr>";
+
+			
+			//공백처리
+			$row_count++; 	
+			if($row_count%10 == 0) {
+				echo"<tr><td colspan = '4' class='menu_subtitle'>　</tr>";
 			}
+				
+	
 		}
 	}
 }

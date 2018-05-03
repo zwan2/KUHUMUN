@@ -8,7 +8,7 @@ include 'top.php';
   <a href="list.php"><span class="fs-13 text-gray-soft">뒤로 가기</span></a>
   <br/><br/>
   <?=detail_res_title()?>
-  <br/>
+  
   <?=detail_img()?>
   <br/>
   <p class="fs-14 text-gray mb-1 text-center">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
