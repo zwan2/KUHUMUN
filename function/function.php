@@ -143,13 +143,13 @@ function detail_res_title() {
 	global $db;
 	$res_id = $_GET['res_id'];
 	
-	$query_res_select = "SELECT RES_TITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
+	$query_res_select = "SELECT RES_TITLE, RES_SUBTITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
 			echo"<h1 class='page-title mb-0 mb-md-0 text-center'>$row[RES_TITLE]</h1>";
-			/*if($row['RES_SUBTITLE']) {
+			if($row['RES_SUBTITLE']) {
 				echo"<footer class='blockquote-footer text-center'>$row[RES_SUBTITLE]</footer>";
-			}*/
+			}
 		} 
 		//잘못된 주소
 		else {
