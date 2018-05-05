@@ -6,12 +6,11 @@ include 'top.php';
 <div class="container">
 
   <a href="list.php"><span class="fs-13 text-gray-soft">뒤로 가기</span></a>
-  <br/><br/>
+  <br/>
   <?=detail_res_title()?>
   
   <?=detail_img()?>
-  <br/>
-  <p class="fs-14 text-gray mb-1 text-center">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
+  
   <br/>
   <table class="table table-sm">
     <thead>
@@ -26,7 +25,9 @@ include 'top.php';
       <?=detail_view()?>
     </tbody>
   </table>
+
   <?=detail_res_report()?>
+  <p class="fs-14 text-gray mb-1 text-center">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
 
   <br/><hr/>
   <form method="post" action="comment.php" onsubmit="return comment_check();" name="comment">
@@ -39,7 +40,7 @@ include 'top.php';
       
     
       <div class="col-2 col-md-1 my-1">
-        <button type="submit" class="btn btn-outline-dark">입력</button>
+        <button type="submit" class="btn btn-outline-success">입력</button>
       </div>
     </div>
   </form>

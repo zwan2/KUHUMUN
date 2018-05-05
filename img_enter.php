@@ -22,7 +22,7 @@ include 'top.php';
 			
 		</br>
 				
-		<button class="btn btn-dark btn-block" type="submit" onClick="return frmCheck();">입력</button>
+		<button class="btn btn-success btn-block" type="submit" onClick="return frmCheck();">입력</button>
 
 	</form>
 

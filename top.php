@@ -39,10 +39,12 @@ include './function/function.php';
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 
-
-
-
-
+  <!-- Chrome, Firefox OS and Opera -->
+  <meta name="theme-color" content="#28A745">
+  <!-- Windows Phone -->
+  <meta name="msapplication-navbutton-color" content="#28A745">
+  <!-- iOS Safari -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="#28A745">
 
 
 
@@ -50,22 +52,35 @@ include './function/function.php';
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light">
+<nav class="navbar sticky-top navbar-expand-lg navbar-light">
   <div class="container">
-    <a href="/" class="navbar-brand">건대후문<em>beta</em></a>
+    <a href="/" class="navbar-brand">건대후문</a>
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon" id="menu_button"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <div class="navbar-nav">     
-        <a class="nav-link" id="nav-item-top" href="enter.php">정보 입력</a>
-        <a class="nav-link" href="list.php">음식점 리스트</a>
+      <hr>
+      <div class="navbar-nav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="intro.php">건대후문은?</a>     
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="enter.php">정보 입력</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">음식점 리스트</a>
+          </li>
+        </ul>
       </div>
 
    
     </div>
+
+
+
   </div>
 </nav>
 <br/>

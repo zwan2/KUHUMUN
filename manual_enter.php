@@ -25,12 +25,12 @@ include 'top.php';
 			</tbody>
 		</table>
 		<blockquote class="blockquote text-center">
-		  <button type="button" class="btn btn-outline-dark" onClick="insRow()">추가</button>
+		  <button type="button" class="btn btn-outline-success" onClick="insRow()">추가</button>
 		</blockquote>
 		
 	</br>
 				
-		<button class="btn btn-dark btn-block" type="submit" onClick="return frmCheck();">입력</button>
+		<button class="btn btn-success btn-block" type="submit" onClick="return frmCheck();">입력</button>
 
 	</form>
 

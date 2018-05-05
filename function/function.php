@@ -120,25 +120,15 @@ function list_view_type() {
 
 	$query_type_select = "SELECT TYPE_ID, TYPE_NAME FROM RES_TYPE";
 
-	echo "<a href='list.php' class='badge badge-pill badge-dark type_search'>전체</a>";
+	echo "<a href='./' class='badge badge-pill badge-success type_search'>전체</a>";
 	if($result = $db->query($query_type_select)) {
 		while($row = $result->fetch_assoc()) {
-			echo "<a href='list.php?type_search=$row[TYPE_ID]' class='badge badge-pill badge-dark type_search'>$row[TYPE_NAME]</a>";
+			echo "<a href='./?type_search=$row[TYPE_ID]' class='badge badge-pill badge-success type_search' id='$row[TYPE_ID]'>$row[TYPE_NAME]</a>";
 		}
 	}
-}
-/*
-function list_view_new() {
-	global $db;
 
-	$query_detail_select = "SELECT DISTINCT RES_ID FROM RES_DETAIL ORDER BY RES_ID DESC LIMIT 5";
-	if($result = $db->query($query_detail_select)) {
-		while($row = $result->fetch_assoc()) {
-			echo $row['RES_ID'];
-		}
-	}
 }
-*/
+
 function detail_res_title() {
 	global $db;
 	$res_id = $_GET['res_id'];
@@ -277,7 +267,7 @@ function detail_view() {
 				//공백 (BLANK 버그) 예외처리 
 				//출력
 				if($res_menu_code != 9) {
-					echo"<tr class='bg-primary'><td colspan = '4' class='menu_subtitle'><p class='text-white font-weight-bold'>$subtitle_array[$res_menu_code]</p></td></tr>";
+					echo"<tr class='bg-success'><td colspan = '4' class='menu_subtitle'><p class='text-white font-weight-bold'>$subtitle_array[$res_menu_code]</p></td></tr>";
 				} 
 				//모든 음식이 9일 때 예외처리
 				else if ($res_menu_code== 9 && $check_code!= -1) {
@@ -342,13 +332,15 @@ function detail_comment() {
 }
 
 /*
+//굳이?
 function index_detail() {
 	global $db;
-	$query_schema_select = "SELECT TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'RESTAURANT';";
+	$query_schema_select = "SELECT UPDATE_TIME, TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'RES_DETAIL';";
 
 	if($result = $db->query($query_schema_select)) {	
-		$row = $result->fetch_assoc();
-		echo $row[1];
+		$row = $result->fetch_array();
+		echo $row[0];
+
 	}
 
 }
