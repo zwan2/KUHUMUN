@@ -13,9 +13,9 @@ include 'top.php';
 		</p>
 		<br/>
 
-		<a class="btn btn-outline-dark" href="enter.php" role="button">더 입력하기</a>
+		<a class="btn btn-success text-white" href="enter.php" role="button">더 입력하기</a>
 
-		<a class="btn btn-outline-dark" href="/" role="button">홈으로</a>
+		<a class="btn btn-success text-white" href="/" role="button">홈으로</a>
 	</blockquote>
 
 

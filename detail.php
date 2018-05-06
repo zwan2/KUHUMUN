@@ -48,7 +48,30 @@ include 'top.php';
 
 </div>
 
-<script>
+<a id="kakao-link-btn" href="javascript:;">
+<!--카카오톡 공유-->
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+<script type='text/javascript'>
+
+  //<![CDATA[
+    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+    Kakao.init('934c0a9e2ff59605632b32d65098ceae');
+    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
+    function sendLink() {
+      Kakao.Link.sendDefault({
+        objectType: 'text',
+        text: 'test',
+        link: {
+          'http://kuhumun.info'
+        }
+
+      });
+    }
+  //]]>
+
+
+
+
 $('.carousel').carousel({
   interval: false
 });
@@ -63,6 +86,10 @@ function comment_check() {
   }
 
 }
+
+
+
+
 </script>
 
 
