@@ -30,8 +30,8 @@ include './function/function.php';
 
   <link rel="stylesheet" href="https://themes.getbootstrap.com/wp-content/themes/bootstrap-marketplace/style.css?ver=1521313391">
   <link rel="stylesheet" href="./css/style.css?version=1.91">
-  <link rel="shortcut icon" href="/favicon.ico">
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="icon" href="/favicon.png" type="image/x-icon">
 
 
 
