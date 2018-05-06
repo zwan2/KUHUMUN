@@ -61,9 +61,7 @@ include 'top.php';
       Kakao.Link.sendDefault({
         objectType: 'text',
         text: 'test',
-        link: {
-          'http://kuhumun.info'
-        }
+        link: 'http://kuhumun.info'
 
       });
     }
