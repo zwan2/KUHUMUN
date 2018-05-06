@@ -8,9 +8,16 @@ include 'top.php';
   <a href="list.php"><span class="fs-13 text-gray-soft">뒤로 가기</span></a>
   <br/>
   <?=detail_res_title()?>
+  <div class="float-right">
+    <a id="kakao-link-btn" href="javascript:sendLink()">
+      <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/>
+    </a>
+  </div><br>
+  
   
   <?=detail_img()?>
   
+
   <br/>
   <table class="table table-sm">
     <thead>
@@ -27,6 +34,7 @@ include 'top.php';
 
   <?=detail_res_report()?>
   <p class="fs-14 text-gray mb-1 text-center">확실한 정보는 <strong>굵게</strong> 표시됩니다.</p>
+
 
   <br/><hr/>
   <form method="post" action="comment.php" onsubmit="return comment_check();" name="comment">
@@ -48,24 +56,20 @@ include 'top.php';
 
 </div>
 
-<a id="kakao-link-btn" href="javascript:;">
+
 <!--카카오톡 공유-->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
-
+  var now_link = window.location.href;
   //<![CDATA[
     // // 사용할 앱의 JavaScript 키를 설정해 주세요.
     Kakao.init('934c0a9e2ff59605632b32d65098ceae');
     // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
     function sendLink() {
-      Kakao.Link.sendDefault({
-        objectType: 'text',
-        text: 'test',
-        link: 'http://kuhumun.info'
-
+      Kakao.Link.sendScrap({
+        requestUrl: now_link
       });
     }
-  //]]>
 
 
 
