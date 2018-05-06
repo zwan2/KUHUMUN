@@ -64,7 +64,7 @@ include 'top.php';
 <script type='text/javascript'>
   var now_url = window.location.href;
   var title = document.getElementById('res_title');
-  document.write(now_url);
+
   //<![CDATA[
   // // 사용할 앱의 JavaScript 키를 설정해 주세요.
   Kakao.init('934c0a9e2ff59605632b32d65098ceae');
