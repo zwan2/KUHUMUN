@@ -4,9 +4,7 @@
 }
 
 * { font-family: 'Noto Sans KR', 'Sans-serif'; }
-strong {
-  font-weight: 700 !important;
-}
+
 a {
   color: #272727 !important;
   text-decoration: none !important;
