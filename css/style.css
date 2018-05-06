@@ -184,7 +184,9 @@ input[type="number"]::-webkit-inner-spin-button {
   border: none !important;
 }
 
-
+#kakao_share_img {
+  width: 13px;
+}
 
 /*footer*/
 

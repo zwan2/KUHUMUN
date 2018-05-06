@@ -6,13 +6,15 @@ include 'top.php';
 <div class="container">
 
   <a href="list.php"><span class="fs-13 text-gray-soft">뒤로 가기</span></a>
-  <br/>
-  <?=detail_res_title()?>
   <div class="float-right">
     <a id="kakao-link-btn" href="javascript:sendLink()">
-      <img src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/>
+       <span class="fs-13 text-gray-soft">친구에게 공유</span>
+      <img id='kakao_share_img' src="//developers.kakao.com/assets/img/about/logos/kakaolink/kakaolink_btn_small.png"/>
     </a>
   </div><br>
+  <br/>
+  <?=detail_res_title()?>
+  
   
   
   <?=detail_img()?>
@@ -60,16 +62,26 @@ include 'top.php';
 <!--카카오톡 공유-->
 <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
-  var now_link = window.location.href;
+  var now_url = window.location.href;
+  var title = document.getElementById('res_title');
   //<![CDATA[
-    // // 사용할 앱의 JavaScript 키를 설정해 주세요.
-    Kakao.init('934c0a9e2ff59605632b32d65098ceae');
-    // // 카카오링크 버튼을 생성합니다. 처음 한번만 호출하면 됩니다.
-    function sendLink() {
-      Kakao.Link.sendScrap({
-        requestUrl: now_link
-      });
-    }
+  // // 사용할 앱의 JavaScript 키를 설정해 주세요.
+  Kakao.init('934c0a9e2ff59605632b32d65098ceae');
+  
+  function sendLink() {
+    Kakao.Link.sendDefault({
+      objectType: 'feed',
+      content: {
+        title: '건대후문',
+        description: title + '메뉴판 정보',
+        imageUrl: './img/logo.png',
+        link: {
+          webUrl: now_url
+        }
+      }
+    });
+  }
+  //]]>
 
 
 
