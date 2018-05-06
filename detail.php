@@ -64,6 +64,7 @@ include 'top.php';
 <script type='text/javascript'>
   var now_url = window.location.href;
   var title = document.getElementById('res_title');
+  document.write(title.textContent);
   //<![CDATA[
   // // 사용할 앱의 JavaScript 키를 설정해 주세요.
   Kakao.init('934c0a9e2ff59605632b32d65098ceae');
@@ -73,8 +74,8 @@ include 'top.php';
       objectType: 'feed',
       content: {
         title: '건대후문',
-        description: title + '메뉴판 정보',
-        imageUrl: './img/logo.png',
+        description: title.textContent + ' 음식점 정보',
+        imageUrl: '',
         link: {
           webUrl: now_url
         }
