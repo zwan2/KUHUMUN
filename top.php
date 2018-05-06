@@ -65,14 +65,16 @@ include './function/function.php';
       <div class="navbar-nav">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
+            <a class="nav-link" href="/">홈</a>
+          </li>
+
+          <li class="nav-item">
             <a class="nav-link" href="intro.php">건대후문은?</a>     
           </li>
           <li class="nav-item">
             <a class="nav-link" href="enter.php">정보 입력</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">음식점 리스트</a>
-          </li>
+
         </ul>
       </div>
 

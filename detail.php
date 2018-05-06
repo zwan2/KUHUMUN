@@ -18,7 +18,6 @@ include 'top.php';
         <th scope="col">메뉴</th>
         <th scope="col">가격</th>
         <th scope="col">업데이트</th>
-        <th scope="col">신고</th>
       </tr>
     </thead>
     <tbody>

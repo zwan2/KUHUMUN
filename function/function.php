@@ -232,7 +232,9 @@ function detail_view() {
 	$check_code = -1;
 
 
-	$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_MENU_CODE, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY RES_MENU_CODE ASC, PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC";
+	//new
+	$query_detail_select = "SELECT RES_MENU, RES_MENU_CODE, RES_PRICE, INPUT_TIME, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY RES_MENU_CODE ASC, PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC";
+	//$query_detail_select = "SELECT DETAIL_ID, RES_MENU, RES_MENU_CODE, RES_PRICE, INPUT_TIME, REPORT_COUNT, PROVEN_CODE FROM RES_DETAIL WHERE RES_ID = '$res_id' ORDER BY RES_MENU_CODE ASC, PROVEN_CODE DESC, RES_PRICE DESC, RES_MENU ASC";
 
 
 	//SUBTITLE
@@ -286,7 +288,7 @@ function detail_view() {
 				echo"<td><p>$row[RES_MENU]</p></td>";
 				echo"<td>$res_price</td>";
 				echo"<td>$input_time</td>";
-				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";			
+				//echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";			
 				
 				echo"</tr>";
 			} 
@@ -296,7 +298,7 @@ function detail_view() {
 				echo"<td><p class='font-weight-bold'>$row[RES_MENU]</p></td>";
 				echo"<td><p class='font-weight-bold'>$res_price</p></td>";
 				echo"<td>$input_time</td>";
-				echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\");'><span aria-hidden='true'>&times;</span></a></td>";			
+				//echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\");'><span aria-hidden='true'>&times;</span></a></td>";			
 				
 				echo"</tr>";
 			} else {
