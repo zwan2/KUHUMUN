@@ -60,8 +60,10 @@ function getUrlVars() {
 }
 var get_id = getUrlVars()["type_search"];
 
-var type = document.getElementById(eval(""+get_id+""));
-type.style.backgroundColor = "#1e7e34";
+if (get_id) {
+  var type = document.getElementById(eval(""+get_id+""));
+  type.style.backgroundColor = "#1e7e34";
+}
 
 </script>
 

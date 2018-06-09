@@ -16,17 +16,17 @@ function removeRow() {
 })};
 function frmCheck() {
   var frm = document.form;
-  
+
   for(var i = 0; i <= frm.elements.length - 1; i++) {
 	if(frm.elements[i].name == "addText") {
 		if(!frm.elements[i].value) {
             alert("값을 모두 입력하세요!");
             frm.elements[i].focus();
 	 		return;
-        }     
+        }
 	}
    }
- }	
+ }
 </script>
 
 
@@ -48,25 +48,25 @@ function list_view() {
 
 		$search = preg_replace("/\s+/", "", $_GET['search']);
 		$search = "%".$search."%";
-	
+
 		$query_res_select = "SELECT RES_ID, RES_TITLE, PROVEN_CODE FROM RESTAURANT WHERE RES_TITLE LIKE '$search' ORDER BY RES_TITLE ASC";
 
 		if($result = $db->query($query_res_select)) {
 			if($row = $result->fetch_assoc()) {
-				
+
 				if($row['PROVEN_CODE'] == 0) {
 					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'>$row[RES_TITLE]</li></a>";
  				} else if ($row['PROVEN_CODE'] == 1) {
  					echo"<a href='detail.php?res_id=$row[RES_ID]'><li class='list-group-item'><strong>$row[RES_TITLE]</strong></li></a>";
  				}
 
-			} 
+			}
 			//잘못된 주소
 			else {
 				echo"<li class='list-group-item'><p>결과가 없습니다.</p></li>";
 			}
 		}
-	} 
+	}
 
 	//TYPE으로 검색
 	else if(isset($_GET['type_search'])) {
@@ -132,7 +132,7 @@ function list_view_type() {
 function detail_res_title() {
 	global $db;
 	$res_id = $_GET['res_id'];
-	
+
 	$query_res_select = "SELECT RES_TITLE, RES_SUBTITLE FROM RESTAURANT WHERE RES_ID = '$res_id'";
 	if($result = $db->query($query_res_select)) {
 		if($row = $result->fetch_assoc()) {
@@ -140,7 +140,7 @@ function detail_res_title() {
 			if($row['RES_SUBTITLE']) {
 				echo"<footer class='blockquote-footer text-center'>$row[RES_SUBTITLE]</footer>";
 			}
-		} 
+		}
 		//잘못된 주소
 		else {
 			echo"<script>window.history.back();</script>";
@@ -156,7 +156,7 @@ function detail_res_report() {
 
 function detail_img() {
 	global $db;
-	
+
 	if(isset($_GET['res_id'])) {
 
 		$res_id = $_GET['res_id'];
@@ -176,14 +176,14 @@ function detail_img() {
 				</ol>
 				<div class="carousel-inner">
 				<?
-			
+
 				$cnt = 0;
 				while($row = $result->fetch_assoc()) {
 					?>
-					
+
 					<div class="carousel-item <? if($cnt == 0) echo 'active' ?> ">
 				      <img class="d-block carousel_img" src="./img/restaurant/<?=$row['IMG_NAME']?>" alt="img">
-				      
+
 				      <div class="carousel-caption">
 					  	<inline class="caption-block"><?=$row['RES_MENU']?>
 				      </inline>
@@ -192,7 +192,7 @@ function detail_img() {
 				    <?
 				    $cnt++;
 				}
-				
+
 				?>
 				</div>
 				  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -202,12 +202,12 @@ function detail_img() {
 				  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
 				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 				    <span class="sr-only">Next</span>
-				  </a>	  
+				  </a>
 				</div>
-			
+
 				<?
-				
-			} 
+
+			}
 
 
 		}
@@ -216,14 +216,14 @@ function detail_img() {
 		else {
 			return;
 		}
-	} 
+	}
 	//error
 	else {
 		echo"<script>alert('error: 01'); location.href='/';</script>";
 	}
 
 }
-	
+
 
 function detail_view() {
 	global $db;
@@ -254,29 +254,29 @@ function detail_view() {
 		while($row = $result->fetch_assoc()) {
 			$input_time = date("m.d",strtotime($row['INPUT_TIME']));
 			$res_price = number_format((int)$row['RES_PRICE']);
-			
+
 
 			//1. MENU SUBTITLE
 			if($check_code < $row['RES_MENU_CODE']) {
 				$res_menu_code = $row['RES_MENU_CODE'];
-				
+
 				//BLANK (맨윗줄만 예외처리)
 				if($check_code != -1) {
 					echo"<tr><td colspan = '4' class='menu_subtitle'>　</td></tr>";
 
 				}
 
-				//공백 (BLANK 버그) 예외처리 
+				//공백 (BLANK 버그) 예외처리
 				//출력
 				if($res_menu_code != 9) {
 					echo"<tr class='bg-success'><td colspan = '4' class='menu_subtitle'><p class='text-white font-weight-bold'>$subtitle_array[$res_menu_code]</p></td></tr>";
-				} 
+				}
 				//모든 음식이 9일 때 예외처리
 				else if ($res_menu_code== 9 && $check_code!= -1) {
 					echo"<tr><td colspan = '4' class='menu_subtitle'>　</td></tr>";
 				}
 
-				
+
 				$check_code = $row['RES_MENU_CODE'];
 				$row_count = 0;
 			}
@@ -288,32 +288,32 @@ function detail_view() {
 				echo"<td><p>$row[RES_MENU]</p></td>";
 				echo"<td>$res_price</td>";
 				echo"<td>$input_time</td>";
-				//echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";			
-				
+				//echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]');' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\"><span id='report_button' aria-hidden='true'>&times;</span><small id='report_button'>$row[REPORT_COUNT]</small></a></td>";
+
 				echo"</tr>";
-			} 
+			}
 			//2-2. 증명됨
 			else if ($row['PROVEN_CODE'] == 1) {
 				echo"<tr>";
 				echo"<td><p class='font-weight-bold'>$row[RES_MENU]</p></td>";
 				echo"<td><p class='font-weight-bold'>$res_price</p></td>";
 				echo"<td>$input_time</td>";
-				//echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\");'><span aria-hidden='true'>&times;</span></a></td>";			
-				
+				//echo"<td><a href='report.php?res_id=$res_id&detail_id=$row[DETAIL_ID]' onclick=\"return confirm('잘못된 정보를 신고하시겠습니까?')\");'><span aria-hidden='true'>&times;</span></a></td>";
+
 				echo"</tr>";
 			} else {
 				echo"<script>alert('error: 01'); location.href='/';</script>";
 			}
 
 
-			
+
 			//공백처리
-			$row_count++; 	
+			$row_count++;
 			if($row_count%10 == 0) {
 				echo"<tr><td colspan = '4' class='menu_subtitle'>　</tr>";
 			}
-				
-	
+
+
 		}
 	}
 }
@@ -339,7 +339,7 @@ function index_detail() {
 	global $db;
 	$query_schema_select = "SELECT UPDATE_TIME, TABLE_ROWS FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_NAME = 'RES_DETAIL';";
 
-	if($result = $db->query($query_schema_select)) {	
+	if($result = $db->query($query_schema_select)) {
 		$row = $result->fetch_array();
 		echo $row[0];
 
