@@ -27,10 +27,10 @@ DAU 최대 414명, 총 3000명 이상 이용자 기록.
 ---
 
 <div>
-<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/1.png" width="200px"/>
-<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/2.png" width="200px"/>
-<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/3.png" width="200px"/>
-<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/4.png" width="200px"/>
+<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/1.png" width="180px"/>
+<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/2.png" width="180px"/>
+<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/3.png" width="180px"/>
+<img src="https://github.com/zwan2/KUHUMUN/blob/master/img/4.png" width="180px"/>
 </div>
 
 
